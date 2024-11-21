@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'add-user.component.css';
+
+
+::ng-deep .ng2-st-column-title .ng2-smart-table thead  th{
+    text-align: center; 
+    align-items: center;
+  }
+
+.fieldset1 {
+    border: none !important;
+    margin: 0px 10px 0px 10px;
+    position: relative;
+    border-radius: 4px;
+    padding:15px;
+    background: white;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    height: auto !important;
+}	
+
+
+.legend1{
+    font-size: 14px;
+    margin-bottom: 0px;
+    border-radius: 4px;
+    padding: 3px 3px 3px 9px;
+    color: white !important;
+    
+    background: linear-gradient(45deg, #21374cd1 , #21384cba)!important;
+    width: fixed;
+}

@@ -1,0 +1,284 @@
+<!-- ============================================================== -->
+<!-- toggle and nav items -->
+<!-- ============================================================== -->
+<ul class="navbar-nav float-left mr-auto">
+  <!-- Edited by AMR  -->
+  <li></li>
+  <li *ngFor="let item of lstMainTitles;let i = index" (click)="menuClicked(item)" class="nav-item search-box" id="menuId">
+    
+    <a class="nav-link waves-effect waves-dark  color">
+        <div class="d-flex align-items-center">
+            <div class="ml-1 d-none d-sm-block" [style.color]  = "lstColor[i]" style="font-family: system-ui;font-weight: 800;">
+                <!-- <span >&nbsp;{{item}} &nbsp;</span> -->
+            </div>
+        </div>
+    </a>
+  </li>
+  <li class="nav-item dropdown border-right" ngbDropdown placement="bottom-right">
+</li>
+</ul>
+<!-- ============================================================== -->
+<!-- Right side toggle and nav items -->
+<!-- ============================================================== -->
+
+<ul class="navbar-nav float-right">
+  <!-- ============================================================== -->
+  <!-- Search -->
+  <!-- ============================================================== -->
+
+  <li class="nav-item  mt-3 mr-2">
+    <!-- <p>{{unitname}}</p> -->
+    <input matInput class="search-click" placeholder="Search modules here .." [formControl]="searchModule" [matAutocomplete]="ModuleName" [(ngModel)]="selectedModule" (focusout)="focusOut()" style="color: rgb(0, 0, 0);" #myInput>
+    <i class="mdi mdi-magnify font-20 " style="color: rgb(7, 7, 7);cursor: pointer;" (click)="focusInput()" title="Search"></i>
+    <mat-autocomplete #ModuleName="matAutocomplete">
+        <mat-option *ngFor="let item of lstSidebar" [value]="item.strModuleName" (onSelectionChange)="SidebarTypeahead(item)">
+            {{ item.strModuleName }}
+        </mat-option>
+    </mat-autocomplete>
+  </li>
+  <!-- ============================================================== -->
+  <!-- Messages -->
+  <!-- ============================================================== -->
+  <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
+  </li>
+  <!-- ============================================================== -->
+  <!-- End Messages -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Comment -->
+  <!-- ============================================================== -->
+  <!-- new notification -->
+
+  <li class="nav-item dropdown border-right" ngbDropdown placement="bottom-right">
+    <a ngbDropdownToggle  class="nav-link dropdown-toggle waves-effect waves-dark" href="javascript:void(0)" data-toggle="dropdown"   style="color: rgb(7, 7, 7);cursor: pointer;" aria-haspopup="true" aria-expanded="false">
+        <i *ngIf = " intCount > 999" title="Notifications" matBadge="999+"  matBadgeColor="warn" class="mdi mdi-bell font-22 blink-animation "></i>
+        <i *ngIf = "intCount>0 && intCount < 999" title="Notifications" matBadge="{{intCount}}"  matBadgeColor="warn" class="mdi mdi-bell font-22 blink-animation "></i>
+        <i *ngIf = "intCount==0"  title="Notifications" matBadgeColor="warn" class="mdi mdi-bell font-22"></i>
+        <!-- <span class="badge badge-pill badge-info noti">3</span> -->
+    </a>
+    <div class="dropdown-menu dropdown-menu-right mailbox" style="max-height: 500px;" ngbDropdownMenu>
+        <span class="with-arrow">
+            <span class="bg-primary"></span>
+        </span>
+        <ul *ngIf = "!lstNotification" style="max-height: 500px;" class="list-style-none">
+            <li>
+                <div class="drop-title bg-primary text-white">
+                    <span class="font-light">No Notifications</span>
+                </div>
+            </li>
+            <li>
+                
+            </li>
+        </ul>
+        <ul *ngIf = "lstNotification" style="max-height: 500px;" class="list-style-none">
+            <li>
+                <div *ngIf = "lstNotification.length>0" class="drop-title bg-primary text-white">
+                    <h4 class="m-b-0 p-2">{{lstNotification.length}}
+                    <span class="font-light">Notifications</span></h4>
+                </div>
+                <div *ngIf = "lstNotification.length==0" class="drop-title bg-primary text-white">
+                    <span class="font-light">No Notifications</span>
+                </div>
+            </li>
+            <li>
+                <div class="message-center notifications" style="max-height: 400px;overflow: auto; overflow-x: hidden;" >
+                    
+                    <a (click)="showNotification(notification)" class="message-item ml-2 mr-2" *ngFor="let notification of lstNotification">
+                        <div *ngIf="!notification.blnRead" class="row notify-row notify-not-read" style="background-color: #eae0b252;">
+                            <!-- <div class="col-md-2 mt-2">
+                                <i class="ti-link mr-3 btn-circle btn-danger" style="line-height:10px; height: 35px;"></i>
+                            </div> -->
+                            <div class="col-md-12">
+                                <div>
+                                    <div style="float: right; font-size: 12px;">{{notification.datNotify |date: 'dd/MM/yyyy hh:mm a' }}</div>
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div class="row">
+                                    <div class="col-md-12" style="font-size: 12px;">{{notification.strBody}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="notification.blnRead" class="row notify-row" style="padding: 3px 0px 3px 0px;">
+                            <div class="col-md-2 mt-2">
+                                <i class="ti-link mr-3 btn-circle btn-danger" style="line-height:10px; height: 35px;"></i>
+                            </div>
+                            <div class="col-md-10">
+                                <div>
+                                    <div style="float: left; font-weight: 500; width: 70%;">{{notification.strTitle}}</div>
+                                    <div style="float: right; width: 65px;font-size: 12px;">{{notification.datNotify}}</div>
+                                </div>
+                                <div style="clear: both;"></div>
+                                <div class="row">
+                                    <div class="col-md-12" style="font-size: 12px;">{{notification.strBody}}</div>
+                                </div>
+                            </div>
+                        </div> -->
+                    <hr style="margin-top: 0rem; margin-bottom: 0rem;">
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</li>
+
+  <!-- END -->
+  <!-- ============================================================== -->
+  <!-- End Comment -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- User profile and search -->
+  <!-- ============================================================== -->
+  <li class="nav-item dropdown" ngbDropdown placement="bottom-right">
+    <a ngbDropdownToggle class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="javascript:void(0)"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <img src="{{profileImage}}" alt="user" class="rounded-circle" onerror="this.src='/assets/images/no_profile_pic2.webp';"  width="60" height="50">
+      <span class="m-l-5 font-medium d-none d-sm-inline-block">{{userName}}
+        <i class="mdi mdi-chevron-down"></i>
+      </span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY" ngbDropdownMenu style="margin-left: -125px;">
+      <span class="with-arrow">
+        <span class="bg-primary"></span>
+      </span>
+      <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10" style="background-color: black !important; ">
+        <div class="">
+          <img src="{{profileImage}}" alt="user" class="img-circle" onerror="this.src='/assets/images/no_profile_pic2.webp';"  width="60" height="50">
+        </div>
+        <div class="m-l-10">
+          <h4 class="m-b-0">{{userName}}</h4>
+          <p class=" m-b-0">{{userEmail}}</p>
+        </div>
+      </div>
+      
+      <a class="dropdown-item"  href="javascript:void(0)" (click)="OpenProfile()">
+        <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+      
+        <!-- <div onmouseout="document.getElementById('changepass').style.display = 'none';">
+          <a class="dropdown-item" href="javascript:void(0)" onmouseover="document.getElementById('changepass').style.display = 'block';">
+            <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
+          <div id="changepass" style="display: none;">
+            <a class="dropdown-item" href="javascript:void(0)" (click)="accountSettings()" onmouseover="document.getElementById('changepass').style.display = 'block';">
+              <i class="ti-lock m-r-5 m-l-5" style="margin-left: 10%;"></i> Change Password</a>
+          </div>
+        </div> -->
+        
+      <a class="dropdown-item" href="javascript:void(0)" (click)="onLoggedout()" style="color: #20d0b3;">
+        <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
+      <div class="dropdown-divider"></div>
+    </div>
+  </li>
+  <!-- ============================================================== -->
+  <!-- User profile and search -->
+  <!-- ============================================================== -->
+</ul>
+
+
+
+<ng-template #ReminderModel let-modal>
+  <mat-card>
+    <mat-card-title class="card-title" style="text-align: center;background: #ffffff; padding: 2%;
+    color: #3e958d;
+    background: #e6ecfc;">
+      Set Reminder   <i class="mdi mdi-alarm-multiple" style="font-size: 124%;"></i>
+    </mat-card-title>
+    <mat-card-content>
+      <div class="row centerDiv">
+        <div class="col-md-12" style="max-width: 100%; background: antiquewhite;">
+  
+            <div   style=" margin-top: 10px;" class="col-md-12" >
+              <mat-form-field>
+                  <input (click)="picker1.open()" id="pickupId" #pickupDate required readonly matInput [matDatepicker]="picker1" [min]="minDate" name="pickupDate" placeholder="Remind date" [(ngModel)]="datPickup">
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+          </div>
+          <div class="col-md-12" style="margin-top: 10px;" >
+              <mat-form-field>
+                  <input matInput required placeholder="Remind time" min = '8:00 am' max = '7:00 pm' [ngxTimepicker]="default"  [(ngModel)]="strPickupTime" readonly>
+              </mat-form-field>
+              <ngx-material-timepicker [ESC]="true" (opened)="timePickerOpened()" (closed)="timePickerClosed()" #default></ngx-material-timepicker>
+          </div>
+          <div  style=" margin-top: 10px;" class="col-md-12">
+            <mat-form-field>
+                <input matInput required placeholder="Person to remind" [formControl]="searchAssignUser" [matAutocomplete]="assignusername" [(ngModel)]="strSelectedAssignuser" #idAssignuser>
+                <mat-autocomplete #assignusername="matAutocomplete">
+                    <mat-option *ngFor="let item of lst_assignuser" [value]="item.full_name" (onSelectionChange)="assignUserChanged(item)">
+                        {{ item?.full_name | titlecase }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12" >
+          <div class="col-md-12" style="margin-left: -10px;">
+              <mat-form-field>
+                  <input matInput type="text" required placeholder="Reminder subject" [(ngModel)]="strSubject">
+              </mat-form-field>
+          </div>
+        </div>  
+        </div>
+        <div class="col-md-12" style="text-align: center;
+ 
+        background: antiquewhite;">
+          <button class= "reminderset" style="font-size: 372%;
+          border: none;
+          background: antiquewhite;
+          color: #3a726d;">
+          <div class="shake-rotate">
+            <i class="mdi mdi-alarm-check" style="text-shadow: 1px 12px 12px rgba(11, 8, 8, 0.52);cursor:pointer;" (click)="saveReminder()" title="Save Reminder">
+            </i>
+          </div>
+          </button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+
+
+
+
+
+
+
+
+  <ng-template #WarningModel let-modal>
+    <mat-card>
+      <mat-card-title class="card-title" style="text-align: center;background: white; padding: 2%;
+      color: #3e958d;
+      background: #e6ecfc;">
+      <div class="shake-rotate shake-constant" style = "font-size: 170% !important;">
+        <i class="mdi mdi-bell" style="font-size: 124%;text-shadow: 1px 12px 12px rgba(11, 8, 8, 0.52);color: #db1212;"></i>
+      </div>
+      <label style="text-align: center;color: #915656;">
+        Warning !!
+      </label>  
+      </mat-card-title>
+      <mat-card-content>
+        <div class="row centerDiv">
+          <div class="col-md-12" style="max-width: 100%; background:white;">
+    
+              
+          <div class="col-md-12" >
+            <div class="col-md-12" style="margin-left: -10px;">
+                <label style="font-size: 144%;color: #0c7d86;text-align: center;" >{{strWarningContent}}</label>
+            </div>
+          </div>  
+          </div>
+          <div class="col-md-12" style="text-align: center;
+   
+          background: white;">
+            <button class= "reminderset" style="font-size: 372%;
+            border: none;
+            background: white;
+            color: #c47815;">
+            <div class="shake-rotate">
+              <i class="mdi mdi-stop-circle-outline" style="text-shadow: 1px 12px 12px rgba(11, 8, 8, 0.52);cursor:pointer;" (click)="stopWarning()" title="Stop"></i>
+           
+            </div>
+            </button>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>

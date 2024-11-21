@@ -1,0 +1,166 @@
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center">
+  <!-- <video autoplay muted loop oncanplay="this.play()" onloadedmetadata="this.muted = true" class="video">
+    <source src="assets/video/background_login.mp4" type="video/mp4">
+  </video> -->
+  <div class="video-container">
+    <video autoplay muted loop oncanplay="this.play()" onloadedmetadata="this.muted = true" class="video">
+      <source src="assets/video/new_background.mp4" type="video/mp4">
+    </video>
+  </div>
+
+    <div class="login-div" style="z-index: 999;">
+        <div id="loginform"  *ngIf="!blnForgot">
+            <div class="logo"></div>
+            <div class="title" >
+                <span class="db"><img src="assets/images/login_icon.png" alt="elogo" style="width: 213px;"/></span>
+
+            </div>
+            <form id="loginform"  (ngSubmit)="onSubmit(openMail,lockKey)" autocomplete="off" style="margin-top: -10%;">
+                <div class="fields">
+                    <div class="username"><input #openMail class="user-input" autofocus placeholder="Username" type="text" name="fakeusernameremembered" aria-describedby="basic-addon1"  /></div>
+                    <div class="password"><input id="password" [type]="blnPaswrdShow ? 'text' : 'password'" #lockKey class="pass-input" placeholder="Password" autocomplete="new-password" style="padding-right:127px;" />
+                        <i *ngIf="!blnPaswrdShow" (click)="blnPaswrdShow=!blnPaswrdShow" class="fa fa-eye view_ps" ></i> <i *ngIf="blnPaswrdShow" (click)="blnPaswrdShow=!blnPaswrdShow" class="fa fa-eye-slash" ></i>
+                    </div>
+                </div>
+                <button class="signin-button" type="submit" >Login</button>
+                <div class="link">
+                    <!-- <a (click) = 'ForgotPassword("mobilenumber")' href="javascript:void(0)" id="to-recover" style="color: #473d3d !important;">Forgot password?</a> -->
+                </div>
+            </form>
+        </div>
+
+        <div  *ngIf="blnForgot && !blnSendOtp">
+            <div class="logo"></div>
+            <div class="title" >
+                <span class="db"><img src="assets/images/login_icon.png" alt="elogo" style="width: 213px"/></span>
+
+            </div>
+            <h5 class="font-medium m-b-20" style="color: #f16521;margin-top: 20px; text-align: center;">Recover Password</h5>
+            <span style="color: #b8b8cc;">Enter your Mobile Number and OTP will be sent to you!</span>
+
+            <form id="loginform" (ngSubmit)="SendOtp(openMail)"  autocomplete="off" style="margin-top: -10%;" >
+                <div class="fields">
+                    <div class="username">
+                        <input #openMail class="user-input" placeholder="Mobile Number"  type="number" name="fakeusernameremembered" id="mobilenumber" aria-describedby="basic-addon1" />
+                    </div>
+                </div>
+                <button class="signin-button" type="submit">Send OTP</button>
+            </form>
+            
+
+        </div>
+
+        <div  *ngIf="blnSendOtp && !blnResetPassword">
+            <div class="logo"></div>
+            <div class="title" >
+                <span class="db"><img src="assets/images/login_icon.png" alt="elogo" style="width: 213px"/></span>
+
+            </div>
+
+            <form id="loginform"    autocomplete="off" >
+              <div class="right">
+                <!-- <h5>Login</h5> -->
+                  <div>
+                    <div class="col-lg-12">
+                      <div class="mb-3">
+                        <div>
+                          <h3 style="color: #f16521;margin-top: 20px; text-align: center;">Enter OTP</h3>
+                          <P style="color: #b8b8cc;">We've sent an OTP on your registered number.</P>
+                          <p style="color: #b8b8cc;">Phone number: {{intMobileNumber}}</p>
+                        </div>
+                        <!-- <mat-form-field> -->
+                        <!-- <div style="    width: 10%;
+                        float: left;
+                        margin-top: 11%;"><span class="text-primary">+91</span>
+                        </div> -->
+                        <div class="layout justified">
+                          <input name="num_enter" id="num_enterr1" autofocus type="tel" maxlength="1" class="jss684" value=""  [(ngModel)]="otp1" (ngModelChange)="movefocus('num_enterr2')"  [ngModelOptions]="{standalone: true}">
+                          <input name="num_enter" id="num_enterr2" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp2" (ngModelChange)="movefocus('num_enterr3')" [ngModelOptions]="{standalone: true}">
+                          <input name="num_enter" id="num_enterr3" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp3" (ngModelChange)="movefocus('num_enterr4')" [ngModelOptions]="{standalone: true}">
+                          <input name="num_enter" id="num_enterr4" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp4" (ngModelChange)="movefocus('num_enterr5')" [ngModelOptions]="{standalone: true}">
+                          <input name="num_enter" id="num_enterr5" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp5" (ngModelChange)="movefocus('num_enterr6')" [ngModelOptions]="{standalone: true}">
+                          <input name="num_enter" id="num_enterr6" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp6" (ngModelChange)="movefocus('num_enterr1')" [ngModelOptions]="{standalone: true}">
+                          </div>
+                          <!-- <input style="float: left;" aria-invalid="false" autocomplete="off" id="mobile-no" [(ngModel)]="intMobileNumber" placeholder="Enter your Mobile" type="tel" maxlength="10" class="MuiInputBase-input MuiInput-input MuiInputBase-inputAdornedStart" style="    border: 0;width: 87%;" value=""  OnlyInteger="true"> -->
+                        <!-- <input matInput maxlength="10" OnlyInteger="true" type="text"
+                            [(ngModel)]="intPaytmMallMobileNumber" placeholder="Mob Number" value=""> -->
+                        <!-- </mat-form-field> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="inputs">
+                  </div>
+                </div>
+            </form>
+        </div>
+
+        <div  *ngIf="blnResetPassword">
+          <div class="logo"></div>
+          <div class="title" >
+              <span class="db"><img src="assets/images/login_icon.png" alt="elogo" style="width: 213px"/></span>
+
+          </div>
+          <form id="loginform" (ngSubmit)="OnRestPassword(openMail,lockKey)"   autocomplete="off" *ngIf="blnResetPassword">
+            <div class="fields">
+              <div class="username">
+                <input  #openMail class="user-input" autofocus placeholder="New Password"  type="text" />
+              </div>
+              <div class="password">
+                <input  [type]="blnPaswrdShow ? 'text' : 'password'"  #lockKey  class="user-input" placeholder="Confirm Password" autocomplete="new-password " style="padding-right:127px;" />
+                <i style="margin-left: -25px;" *ngIf="!blnPaswrdShow" class="fa fa-eye password-eye" (click)="blnPaswrdShow=!blnPaswrdShow"></i> <i *ngIf="blnPaswrdShow" style="margin-left: -25px;" class="fa fa-eye-slash password-eye" (click)="blnPaswrdShow=!blnPaswrdShow"></i>
+                
+              </div>
+            </div> 
+            <button class="signin-button" type="submit">Reset</button>
+       
+          </form>
+        </div>
+              
+
+
+    </div>
+</div>
+
+
+
+
+
+<ng-template #pswdresetpopup let-modal  >
+    <form id="loginform"    autocomplete="off">
+        <div class="right">
+         
+            <div>
+              <div class="col-lg-12">
+                <div class="mb-3">
+                  <div>
+                    <h3>Enter OTP</h3>
+                    <P>We've sent an OTP on your registered number.</P>
+                    <p>Phone number: {{intMobileNumber}}</p>
+                  </div>
+                 
+                  <div class="layout justified">
+                    <input name="num_enter" id="num_enterr1" type="tel" maxlength="1" class="jss684" value=""  [(ngModel)]="otp1" (ngModelChange)="movefocus('num_enterr2')"  [ngModelOptions]="{standalone: true}">
+                    <input name="num_enter" id="num_enterr2" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp2" (ngModelChange)="movefocus('num_enterr3')" [ngModelOptions]="{standalone: true}">
+                    <input name="num_enter" id="num_enterr3" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp3" (ngModelChange)="movefocus('num_enterr4')" [ngModelOptions]="{standalone: true}">
+                    <input name="num_enter" id="num_enterr4" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp4" (ngModelChange)="movefocus('num_enterr5')" [ngModelOptions]="{standalone: true}">
+                    <input name="num_enter" id="num_enterr5" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp5" (ngModelChange)="movefocus('num_enterr6')" [ngModelOptions]="{standalone: true}">
+                    <input name="num_enter" id="num_enterr6" type="tel" maxlength="1" class="jss684" value="" [(ngModel)]="otp6" (ngModelChange)="movefocus('num_enterr1')" [ngModelOptions]="{standalone: true}">
+                    </div>
+                </div>
+              </div>
+            </div>
+          <div class="inputs">
+          </div>
+        </div>
+      </form>
+</ng-template>
+
+
+
+<ngx-spinner
+  bdColor="#080808f5"
+  size="medium"
+  type="ball-scale-ripple-multiple">
+  <img src="assets/images/Logo_spinner.png" alt="Your Image" style="width: 30% !important;" class="rotate" /> <p style="margin-bottom: 25%;color:white
+  ;"><b>Loading... </b></p> 
+</ngx-spinner>

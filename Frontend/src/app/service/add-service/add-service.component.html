@@ -1,0 +1,318 @@
+
+
+
+
+<div class="row" style="margin: 3% 1% 0% 0%; ">
+    <div class="col-12 mt-3 ml-2">
+        <!-- <i class="mdi mdi-ticket-account feather bg-c-blue"></i> -->
+        <i class="mdi mdi-account-settings-variant feather bg-c-blue"></i>
+        <h5 class="mt-2">ADD SERVICE</h5> 
+        <!-- <h5 class="mt-2" *ngIf="blnEdit">Edit Payment</h5>  -->
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <form>            
+            <div class="row">
+                <div class="col-md-3 mt-3" *ngIf="!bln_admin">
+                    <mat-form-field>
+                        <input (click)="picker1.open()" id="fromId" #startDate required [disabled]="true"
+                            matInput [matDatepicker]="picker1" name="datTo" placeholder="Date"
+                            [(ngModel)]="datTo" class="readonly-input" style="font-weight: 400; color: black;">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"
+                            class="readonly-toggle"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3 mt-3" *ngIf="bln_admin">
+                    <mat-form-field>
+                        <input (click)="picker1.open()" id="fromId" #startDate required 
+                            matInput [matDatepicker]="picker1" name="datTo" placeholder="Date"
+                            [(ngModel)]="datTo" class="readonly-input" style="font-weight: 400; color: black;">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"
+                            class="readonly-toggle"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+    
+                <div class="col-md-3 " >               
+                  <label style="float: left;">Service *</label>
+                    <ngx-select-dropdown required [config]="ServiceConfig" [options]="ServiceOptions" [(ngModel)]="lstSelectedService"  [multiple]="false" [ngModelOptions]="{standalone: true}" (ngModelChange)="ServiceTypeChange()" required></ngx-select-dropdown>    
+                </div>
+
+                <div class="col-md-3 mt-3">
+                    <mat-form-field *ngIf="blnCashSale">
+                        <input [(ngModel)]="vchr_name" name="name" matInput placeholder="Customer name ">                        
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!blnCashSale">
+                        <input required [(ngModel)]="vchr_name" name="name" matInput placeholder="Customer name ">
+                        <mat-error *ngIf="form.controls['vchr_name'].hasError('required')">
+                       Customer name required !
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="col-md-3 mt-3">
+                    <mat-form-field *ngIf="blnCashSale" >
+                        <input [(ngModel)]="intPhone" type="number" name="phone" matInput placeholder="Contact no.">                        
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!blnCashSale">
+                        <input required [(ngModel)]="intPhone" type="number" name="phone" matInput placeholder="Contact no.">
+                        <mat-error *ngIf="form.controls['intPhone'].hasError('required')">
+                        Contact number required !
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-md-3 mt-3">
+                    <mat-form-field>
+                      <input matInput placeholder="Customer Location" [formControl]="searchLocation" [matAutocomplete]="locationname"
+                        [(ngModel)]="selectedLocation" #branchId>
+                      <mat-autocomplete #locationname="matAutocomplete">
+                        <mat-option *ngFor="let item of lstlocation" [value]="item.vchr_name"
+                          (onSelectionChange)="LocationChanged(item)">
+                          {{ item.vchr_name }} - {{item.vchr_pin_code}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                
+
+                <div class="col-md-3 mt-3">
+                    <mat-form-field >
+                        <input  [(ngModel)]="dblAmount" type="number" name="amount" matInput placeholder="Amount" (ngModelChange)="AmountChange()" >                        
+                    </mat-form-field>
+                </div> 
+    
+                <div class="col-md-3 mt-3" >               
+                    <mat-form-field >
+                        <input required [(ngModel)]="dblServChange"  type="number" name="SerCharge" matInput placeholder="Service Charge" (ngModelChange)="AmountChange()" >
+                        <mat-error *ngIf="form.controls['ser_charge'].hasError('required')">
+                       Service charge is required !
+                        </mat-error>
+                    </mat-form-field>    
+                </div>
+
+                <div class="col-md-3 mt-3">
+                    <mat-form-field >
+                        <input [(ngModel)]="dblPaidAmount" type="number" name="PaidAmount" matInput placeholder="Paid">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3 mt-3">
+                    <mat-form-field >
+                        <input  [(ngModel)]="strReffNum" type="text" name="text" matInput placeholder="Reference No:">               
+                    </mat-form-field>
+                </div>               
+
+
+                <div class="col-md-3 ">
+                                  
+                    <label style="float: left;">Status *</label>
+                        <ngx-select-dropdown required [config]="StatusConfig" [options]="StatusOptions" [(ngModel)]="lstSelectedStatus"  [multiple]="false" [ngModelOptions]="{standalone: true}" required></ngx-select-dropdown>                          
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <mat-form-field >
+                        <input [(ngModel)]="strRemarks" type="text" name="remark" matInput placeholder="Remarks">                        
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-3" style="margin-top: 2%;">                    
+                    <label style="margin-top: 6.5%;
+                    float: center;
+                    font-size: 15px;
+                    color: black;
+                    font-weight: 700;">Total Amount</label>    
+                    <mat-form-field >
+                        <input style="text-align: center;font-size: 17px;color: black;font-weight: 700;" readonly [(ngModel)]="dblTotalAmount" matInput>                        
+                    </mat-form-field>           
+                    
+                </div>  
+            </div>
+            <div class="" style="margin-top: 1.8%; float: right;">
+                <button  type="submit" class="btn save_btn m-r-10" (click)="SaveData()">Save</button>         
+                <button class="btn btn-secondary m-t-8" type="submit" (click)="ClearData()" >Cancel</button>                                        
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+
+<!-- <div class="grid-container mt-5" style="height: 200%;">
+    <div class="grid-item" >
+        <form>            
+            <div class="row">             
+
+                <div class="col-md-6 mt-3" *ngIf="!bln_admin">
+                    <mat-form-field>
+                        <input (click)="picker1.open()" id="fromId" #startDate required [disabled]="true"
+                            matInput [matDatepicker]="picker1" name="datTo" placeholder="Date"
+                            [(ngModel)]="datTo" class="readonly-input" style="font-weight: 400; color: black;">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"
+                            class="readonly-toggle"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6 mt-3" *ngIf="bln_admin">
+                    <mat-form-field>
+                        <input (click)="picker1.open()" id="fromId" #startDate required 
+                            matInput [matDatepicker]="picker1" name="datTo" placeholder="Date"
+                            [(ngModel)]="datTo" class="readonly-input" style="font-weight: 400; color: black;">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"
+                            class="readonly-toggle"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+    
+                <div class="col-md-6 " >               
+                  <label style="float: left;">Service *</label>
+                    <ngx-select-dropdown required [config]="ServiceConfig" [options]="ServiceOptions" [(ngModel)]="lstSelectedService"  [multiple]="false" [ngModelOptions]="{standalone: true}" (ngModelChange)="ServiceTypeChange()" required></ngx-select-dropdown>    
+                </div>
+
+                <div class="col-md-4 mt-5">
+                    <mat-form-field *ngIf="blnCashSale">
+                        <input [(ngModel)]="vchr_name" name="name" matInput placeholder="Customer name ">                        
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!blnCashSale">
+                        <input required [(ngModel)]="vchr_name" name="name" matInput placeholder="Customer name ">
+                        <mat-error *ngIf="form.controls['vchr_name'].hasError('required')">
+                       Customer name required !
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="col-md-4 mt-5">
+                    <mat-form-field *ngIf="blnCashSale" >
+                        <input [(ngModel)]="intPhone" type="number" name="phone" matInput placeholder="Contact no.">                        
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="!blnCashSale">
+                        <input required [(ngModel)]="intPhone" type="number" name="phone" matInput placeholder="Contact no.">
+                        <mat-error *ngIf="form.controls['intPhone'].hasError('required')">
+                        Contact number required !
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-md-4 mt-5">
+                    <mat-form-field>
+                      <input matInput placeholder="Location" [formControl]="searchLocation" [matAutocomplete]="locationname"
+                        [(ngModel)]="selectedLocation" #branchId>
+                      <mat-autocomplete #locationname="matAutocomplete">
+                        <mat-option *ngFor="let item of lstlocation" [value]="item.vchr_name"
+                          (onSelectionChange)="LocationChanged(item)">
+                          {{ item.vchr_name }} - {{item.vchr_pin_code}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <mat-form-field >
+                        <input [(ngModel)]="strRemarks" type="text" name="remark" matInput placeholder="Remarks">                        
+                    </mat-form-field>
+                </div>
+
+            </div>            
+        </form>
+    </div>
+
+
+    <div class="grid-item" >
+        <form>            
+            <div class="row">
+                <div class="col-md-4 mt-4">
+                    <mat-form-field >
+                        <input  [(ngModel)]="dblAmount" type="number" name="amount" matInput placeholder="Amount" (ngModelChange)="AmountChange()" >                        
+                    </mat-form-field>
+                </div> 
+    
+                <div class="col-md-4 mt-4" >               
+                    <mat-form-field >
+                        <input required [(ngModel)]="dblServChange"  type="number" name="SerCharge" matInput placeholder="Service Charge" (ngModelChange)="AmountChange()" >
+                        <mat-error *ngIf="form.controls['ser_charge'].hasError('required')">
+                       Service charge is required !
+                        </mat-error>
+                    </mat-form-field>    
+                </div>
+
+                <div class="col-md-4 mt-4">
+                    <mat-form-field >
+                        <input [(ngModel)]="dblPaidAmount" type="number" name="PaidAmount" matInput placeholder="Paid">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6 mt-5">
+                    <mat-form-field >
+                        <input  [(ngModel)]="strReffNum" type="text" name="text" matInput placeholder="Reference No:">               
+                    </mat-form-field>
+                </div>               
+
+
+                <div class="col-md-6 mt-4">
+                                  
+                    <label style="float: left;">Status *</label>
+                        <ngx-select-dropdown required [config]="StatusConfig" [options]="StatusOptions" [(ngModel)]="lstSelectedStatus"  [multiple]="false" [ngModelOptions]="{standalone: true}" required></ngx-select-dropdown>                          
+                </div>
+
+                
+
+                <div class="col-md-6" style="margin-top: 2%;">                    
+                    <label style="margin-top: 6.5%;
+                    float: center;
+                    font-size: 15px;
+                    color: black;
+                    font-weight: 700;">Total Amount</label>               
+                    
+                </div>
+                
+                <div class="col-md-6 mt-3" >
+                    <mat-form-field >
+                        <input style="text-align: center;font-size: 17px;color: black;font-weight: 700;" readonly [(ngModel)]="dblTotalAmount" matInput>                        
+                    </mat-form-field>
+                </div>
+
+               
+                
+            </div>            
+        </form>
+    </div>
+      
+</div> -->
+
+
+
+<!-- <form >                   
+    <div class="" style="margin-top: 1.8%; float: right;">
+        <button  type="submit" class="btn save_btn m-r-10" (click)="SaveData()">Save</button>         
+        <button class="btn btn-secondary m-t-8" type="submit" (click)="ClearData()" >Cancel</button>                                        
+    </div>
+    
+</form> -->
+
+
+<ngx-spinner
+  bdColor="#080808f5"
+  size="medium"
+  type="ball-scale-ripple-multiple">
+  <img src="assets/images/Logo_spinner.png" alt="Your Image" style="width: 30% !important;" class="rotate" /> <p style="margin-bottom: 25%;color:white
+  ;"><b>Loading... </b></p> 
+</ngx-spinner>
+                
+
+

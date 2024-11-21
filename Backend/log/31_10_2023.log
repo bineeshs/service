@@ -1,0 +1,7 @@
+2023-10-31 20:45:04,361 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 111 - views - post - ERROR - 'function' object has no attribute 'atomic' - user_id:2 - line no: 70
+2023-10-31 20:47:45,938 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 112 - views - post - ERROR -  - user_id:2 - line no: 74
+2023-10-31 20:48:08,795 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 112 - views - post - ERROR -  - user_id:2 - line no: 78
+2023-10-31 20:54:23,808 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 112 - views - post - ERROR -  - user_id:2 - line no: 73
+2023-10-31 21:06:36,970 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 114 - views - post - ERROR - null value in column "vchr_customer_name" violates not-null constraint
+DETAIL:  Failing row contains (4, 2023-10-31 21:05:34.082+05:30, null, null, null, 200, 250, 250, null, Testt 222, 0, 1, 2, null, 2, null, 0).
+ - user_id:2 - line no: 77

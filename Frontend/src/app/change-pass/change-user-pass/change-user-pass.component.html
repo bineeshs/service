@@ -1,0 +1,66 @@
+<div class="card">
+    <div class="card-body">
+
+        <form>
+                <h4 class="form-head"><span><i class="fas fa-lock"></i></span>&nbsp; Change password</h4>
+                <div class="row mt-3" *ngIf="!blnshow">
+
+                    <div class="col-md-4" >
+                        <mat-form-field class="mat-icon-left">
+                            <input matInput [type]="blnPaswrdShowOld ? 'text' : 'password'" name="oldpassword" [(ngModel)]="passwordContent.password" placeholder="Existing password">
+                            <button mat-icon-button matSuffix (click)="blnPaswrdShowOld = !blnPaswrdShowOld" class="eyes" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="blnPaswrdShowOld">
+                        <i *ngIf="!blnPaswrdShowOld" class="fas fa-eye-slash eye" (tap)="blnPaswrdShowOld=!blnPaswrdShowOld" style="cursor: pointer;"></i> <i *ngIf="blnPaswrdShowOld" class="fas fa-eye eye" (tap)="blnPaswrdShowOld=!blnPaswrdShowOld" style="cursor: pointer;"></i>
+                        </button>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button class="btn save_btn mr-10 m-t-10" (click)="SaveUserPassword()">Verify</button>&nbsp;
+                    </div>
+                        
+                    
+                </div> 
+
+                <div class="row mt-3" *ngIf="blnshow">
+                    <div class="col-md-3">
+                        <mat-form-field class="mat-icon-left">
+                            <input matInput [type]="blnPaswrdShowNew1 ? 'text' : 'password'" name="newpassword" #openMail placeholder="New password">
+                            <button mat-icon-button matSuffix (click)="blnPaswrdShowNew1 = !blnPaswrdShowNew1" class="eyes" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="blnPaswrdShowNew1">
+                        <i *ngIf="!blnPaswrdShowNew1" class="fas fa-eye-slash eye" (tap)="blnPaswrdShowNew1=!blnPaswrdShowNew1" style="cursor: pointer;"></i> <i *ngIf="blnPaswrdShowNew1" class="fas fa-eye eye" (tap)="blnPaswrdShowNew1=!blnPaswrdShowNew1" style="cursor: pointer;"></i>
+                      </button>
+                            <mat-error>
+                                Password required.
+                            </mat-error>
+                            <mat-error>
+                                Minimum 8 characters required
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+        
+                   
+        
+                    <div class="col-md-3">
+                        <mat-form-field class="mat-icon-left">
+                            <input matInput [type]="blnPaswrdShowNew2 ? 'text' : 'password'" name="confirmpassword" #lockKey placeholder="Confirm password">
+                            <button mat-icon-button matSuffix (click)="blnPaswrdShowNew2 = !blnPaswrdShowNew2" class="eyes" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="blnPaswrdShowNew2">
+                      <i *ngIf="!blnPaswrdShowNew2" class="fas fa-eye-slash eye" (tap)="blnPaswrdShowNew2=!blnPaswrdShowNew2" style="cursor: pointer;"></i> <i *ngIf="blnPaswrdShowNew2" class="fas fa-eye eye" (tap)="blnPaswrdShowNew2=!blnPaswrdShowNew2" style="cursor: pointer;"></i>
+                    </button>
+                            <mat-error>
+                                Passwords do not match.
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+        
+                    
+        
+                    <div class="col-md-3">
+                        <button class="btn save_btn mr-10 m-t-10" (click)="updateUserPassword(openMail,lockKey)">Update</button>&nbsp;
+                        <!-- <button class="btn btn-secondary m-t-10 hovering-gradient" type="button" >Cancel</button> -->
+                    </div>
+                </div>
+        </form>
+
+    </div>
+</div>
+
+

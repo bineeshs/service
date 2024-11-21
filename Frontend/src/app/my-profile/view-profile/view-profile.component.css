@@ -1,0 +1,52 @@
+h4{
+    font-weight: 500;
+    color: #16507f;
+    font-size: 16px;
+    background-color: #f0f2f3; 
+    padding: 10px;
+    margin-bottom: 43px;
+}
+p{
+    color: black;
+}
+.image{
+    width: 140px;
+    /* border-radius: 50%; */
+    height: 140px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    margin-top: -31px;
+    border: 1px solid #dcdcdc;
+    background: url("/assets/images/users/employee.jpg")
+}
+.name{
+    font-weight: 500;
+    color: #16507f;
+    font-size: 16px;
+}
+label {
+  font-weight: 400;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+}
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover {
+    background: none !important;
+}
+.expand label{
+    color: #16507f;
+    font-weight: 600;
+}
+::ng-deep .mat-expansion-indicator::after, .mat-expansion-panel-header-description {
+    color: #f8763b !important;
+}
+.form-head {
+    margin-top: 1px;
+    font-size: 20px;
+    text-shadow: 0px 0px;
+    margin-bottom: 7px;
+    color: #fa6163;
+    padding: 10px 15px 10px 15px;
+   
+}
+

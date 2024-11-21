@@ -1,0 +1,59 @@
+.hovering-gradient:hover {
+    background: linear-gradient(45deg, #1e384c, #0000007a) !important;
+    border: none;
+  }
+
+  .form-head {
+    margin-top: 1px;
+    font-size: 20px;
+    text-shadow: 0px 0px;
+    margin-bottom: 7px;
+    /* color: #16507f; */
+    padding: 10px 15px 10px 15px;
+    
+}   
+
+h4{
+    color: #2a496b !important;
+    margin-bottom: 5px !important;  
+    margin-top: 5px !important;
+}
+.eye{
+    
+    color: #204f75;
+    margin: auto;
+}
+.eyes{
+    border: none ;
+
+}
+
+
+.fields {
+    width: 100%;
+    padding: 75px 5px 5px 5px;
+  }
+  
+  .fields input {
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 14px;
+    color: rgb(13, 17, 17);
+    ;
+    padding: 12px 140px 12px 18px;
+  }
+  
+  .username,
+  .password {
+    margin-bottom: 30px;
+    border-radius: 25px;
+    background: aliceblue;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #ffffff;
+  }
+  
+  .fields svg {
+    height: 22px;
+    margin: 0 10px -3px 25px;
+  }
+  

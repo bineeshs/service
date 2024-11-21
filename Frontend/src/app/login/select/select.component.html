@@ -1,0 +1,33 @@
+<ng-template #showDesList let-modal  >
+    <div class="modal-content">
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class=" modal-title form-head" style="text-align: center;"> Select Designation</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <ngx-select-dropdown [config]="designConfig" [options]="designOptions" [ngModelOptions]="{standalone: true}" [(ngModel)]="lstDesignation" [multiple]="false"></ngx-select-dropdown>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-default m-r-10" (click)="savepopup()" style="background-color: #6ad4b4;">Save</button>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</ng-template>

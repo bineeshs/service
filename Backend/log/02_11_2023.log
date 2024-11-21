@@ -1,0 +1,9 @@
+2023-11-02 09:25:22,546 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 165 - views - post - ERROR -  - user_id:1 - line no: 123
+2023-11-02 09:27:56,976 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 165 - views - post - ERROR -  - user_id:1 - line no: 123
+2023-11-02 10:21:17,520 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 319 - views - put - ERROR -  - user_id:1 - line no: 288
+2023-11-02 19:48:54,510 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - unsupported operand type(s) for +=: 'int' and 'NoneType' - user_id:1 - line no: 263
+2023-11-02 19:48:58,214 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - unsupported operand type(s) for +=: 'int' and 'NoneType' - user_id:1 - line no: 263
+2023-11-02 19:49:02,134 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - unsupported operand type(s) for +=: 'int' and 'NoneType' - user_id:1 - line no: 263
+2023-11-02 19:50:13,253 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - unsupported operand type(s) for +=: 'int' and 'NoneType' - user_id:1 - line no: 263
+2023-11-02 19:50:15,773 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - unsupported operand type(s) for +=: 'int' and 'NoneType' - user_id:1 - line no: 263
+2023-11-02 19:53:33,755 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - unsupported operand type(s) for +=: 'int' and 'NoneType' - user_id:1 - line no: 263

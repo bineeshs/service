@@ -1,0 +1,11 @@
+ul { list-style: none outside none; margin:0; padding: 0; clear:both;  }
+li { float: left;width: 50%;    line-height: 35px;}
+li:hover{
+    background: #eeeeee66;
+    color: #3e4651;
+}
+
+li:hover { 
+    background: #fff;
+    color: #3e4651;
+ }

@@ -1,0 +1,217 @@
+<h5 class="head-text "><span>
+    </span>&nbsp;<i class="mdi mdi-format-list-bulleted" style="font-size: 18px !important; margin-top:-1px ;"></i>
+    Follow Up List
+</h5>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="card">
+                    <form class="form p-t-10 row">
+                        <div class="col-md-2 " style="margin-top: 1%;">
+                            <mat-form-field>
+                                <input (click)="picker1.open()" id="fromId" #startDate required readonly matInput
+                                    [matDatepicker]="picker1" name="dateFrom" placeholder="From" [(ngModel)]="datFrom">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1>
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-2" style="margin-top: 1%;">
+                            <mat-form-field>
+                                <input (click)="picker2.open()" id="toId" #endDate required readonly matInput
+                                    [matDatepicker]="picker2" name="dateTo" placeholder="To" [(ngModel)]="datTo">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2>
+                                </mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <!-- ----- Branch --- -->
+                        <div class="col-md-3">
+                            <label style="font-weight: bold;">Service Type</label>
+                            <ngx-select-dropdown [config]="ServiceConfig" [options]="lstServiceOption"
+                                [ngModelOptions]="{standalone: true}" [(ngModel)]="lstService"
+                                [multiple]="true"></ngx-select-dropdown>
+                        </div>
+
+                        <!-- vendor -->
+                        <div class="col-md-3">
+                            <label style="font-weight: bold;">Status</label>
+                            <ngx-select-dropdown [config]="StatusConfigflt" [options]="lstStatusOption"
+                                [ngModelOptions]="{standalone: true}" [(ngModel)]="lstStatus"
+                                [multiple]="true"></ngx-select-dropdown>
+                        </div>
+                        <div class="col-md-2" style="margin-top: 2%;">
+                            <button  type="submit" class="btn save_btn m-r-10" (click)="funcGetServiceList()">Search</button>
+                                         
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="lstData.length > 0">
+    
+    <div class="card-body">
+        <div class="example-header">
+            
+        </div>
+        <div>
+            <mat-table [dataSource]="dataSource" matSort class="example-container mat-elevation-z8">
+                
+                <ng-container matColumnDef="SLNO">
+                    <mat-header-cell *matHeaderCellDef > Sl No</mat-header-cell>
+                    <mat-cell *matCellDef="let element;let i = index" > {{i+1}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Service">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='username'> Service </mat-header-cell>
+                    <mat-cell *matCellDef="let row">{{row.service_type}} </mat-cell>
+                </ng-container>
+           
+                <ng-container matColumnDef="Date">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='fullname'> Date </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.dat_created | date:'dd/MM/yyyy'}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Age">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='fk_group__vchr_name'> Age </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.service_age}} d </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Amount">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='fk_group__vchr_name'> Amount </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.dbl_amount}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Service_charge">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='fk_branch__vchr_name'> Servie Charge
+                    </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.dbl_service_charge}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Total">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='fk_branch__vchr_name'> Total </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.dbl_total_amt}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Status">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header='fk_branch__vchr_name'> Status </mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.vchr_status_code}} </mat-cell>
+                </ng-container>
+
+                <!-- action Column -->
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                    <mat-cell *matCellDef="let row" [style.color]="row.username">
+                        <button class="view_btn" (click)="OpenModal(Viewmodal,row.pk_bint_id)">
+                            <i class="fa fa-eye icon" aria-hidden="true"></i>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns;sticky:true"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </mat-table>
+            <mat-paginator [pageSizeOptions]="[ 25,50,100]"></mat-paginator>
+        </div>
+    </div>
+</div>
+
+
+<div class="card nodata" *ngIf="lstData?.length == 0">
+    <div>NO DATA FOUND</div>
+</div>
+
+
+
+
+<ng-template #Viewmodal let-modal>
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <!-- <div class="modal-header">
+              <h5 class="modal-title">No of trays returned</h5>
+            </div> -->
+
+            <h5 class="head-text "><span>
+                </span>&nbsp;<i class="ti-import icon-head"></i>&nbsp;FollowUp Details
+            </h5>
+            <div class="modal-body">
+                <div class="row" *ngFor="let item of lstDetails">
+                    <div class="col-md-4">
+                        <label for="input1">Customer Name</label>
+                        <p class="">{{item.vchr_customer_name}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="input1">Customer Mob:</label>
+                        <p class="">{{item.bint_cust_phone}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="input1">Customer Location</label>
+                        <p class="">{{item.fk_master_location_name}}</p>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label style="float: left;">Status *</label>
+                        <ngx-select-dropdown required [config]="StatusConfig" [options]="StatusOptions"
+                            [(ngModel)]="lstSelectedStatus" [multiple]="false" [ngModelOptions]="{standalone: true}"
+                            required></ngx-select-dropdown>
+                    </div>
+
+                    <div class="col-md-8 mt-3">
+                        <mat-form-field>
+                            <input required [(ngModel)]="item.vchr_remark" type="text" name="remark" matInput
+                                placeholder="Remarks">
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <label for="input1">Total Amount</label>
+                        <p class="">{{item.dbl_total_amt}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="input1">Paid</label>
+                        <p class="">{{item.total_dbl_paid_amt}}</p>
+                    </div>
+
+                    <div class="col-md-3" *ngIf="item.dbl_outstanding > 0">
+                        <label for="input1">Due</label>
+                        <p class="">{{item.dbl_outstanding}}</p>
+                    </div>
+                    <div class="col-md-3" *ngIf="item.dbl_outstanding < 0">
+                        <label for="input1">Excess Amount</label>
+                        <p class="">{{item.dbl_outstanding}}</p>
+                    </div>
+
+
+                    <div class="col-md-3" *ngIf="item.dbl_outstanding >0">
+                        <label for="input3">Pay</label>
+                        <input type="number" class="form-control" id="input3" [(ngModel)]="item.PaidAmount">
+                    </div>
+                </div>
+
+
+
+                <div class="row justify-content-center mt-3" *ngFor="let item of lstDetails">
+                    <div class="col-md-6 col-sm-6" style="    max-width: 20% !important;">
+                        <button *ngIf="item.dbl_outstanding > 0" title="Add" (click)="saveFollowup(item)"
+                            class="btn save_btn btn-block">Save</button>
+                    </div>
+                    <div class="col-md-6 col-sm-6" style="    max-width: 20% !important;margin-left: 30px;">
+                        <button class="btn cancel_btn btn-block" (click)="closeModal()" title="Cancel">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ngx-spinner type="square-jelly-box"></ngx-spinner>

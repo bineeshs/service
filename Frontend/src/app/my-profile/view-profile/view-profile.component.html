@@ -1,0 +1,208 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <h4><i class="fas fa-user-alt"></i>&nbsp;My Profile
+                    
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="background-color: #f290211c;" class="mb-4">
+    <div class="row" *ngIf="lstData.length>0">
+
+        <div class="col-md-2" style="text-align: center">
+            <div>
+                <img src="{{hostName}}{{lstData[0]['vchr_image']}}" class="image">
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="name mt-2 mb-1">{{lstData[0]['first_name'] | titlecase}}
+                        <span> 
+                            &nbsp;{{lstData[0]['last_name'] | titlecase}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <i style="font-size: 14px;">{{lstData[0]['fk_designation__vchr_name']}}</i>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <p class="mb-1"><i class="mdi mdi-email-outline" style="color:orange"></i> &nbsp;{{lstData[0]['email']}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><i class="mdi mdi-phone" style="color:orange"></i> &nbsp;{{lstData[0]['bint_mobile']}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Personal -->
+<div style="margin-top: 10px;" *ngIf="lstData.length>0">
+    <mat-accordion >
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header style="margin-top: 10px;">
+                <mat-panel-title>
+                    <h4  style="padding-left: 0;background:none;color: #f8763b;font-size: 15px;margin:0px;font-weight: 600;"><i class="icon-user"></i>&nbsp;Personal Details</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div style="background: #fff9f3;padding:10px;" class="expand">
+                <div class="row" *ngIf="lstData.length>0">
+                    <div class="col-md-3">
+                        <label>User Name </label>
+                        <p> {{lstData[0]['username']}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>First Name </label>
+                        <p> {{lstData[0]['first_name'] | titlecase}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Middle Name </label>
+                        <p> {{lstData[0]['vchr_middle_name'] | titlecase}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Last Name </label>
+                        <p> {{lstData[0]['last_name'] | titlecase}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Date Of Birth </label>
+                        <p> {{lstData[0]['dat_dob'] | date:'dd-MM-yyyy'}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Gender </label>
+                        <p> {{lstData[0]['vchr_gender']}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Father's Name</label>
+                        <p> {{lstData[0]['vchr_father_name'] | titlecase}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Email Id </label>
+                        <p> {{lstData[0]['email']}}</p>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<!-- Personal ends-->
+
+
+<!-- Address -->
+<div style="margin-top: 10px;" *ngIf="lstData.length>0">
+    <mat-accordion >
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header style="margin-top: 10px;">
+                <mat-panel-title>
+                <h4  style="padding-left: 0;background:none;color: #f8763b;font-size: 15px;margin:0px;font-weight: 600;"><i class=" icon-bell"></i>&nbsp;Permanent Address</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div style="background: #fff9f3;padding:10px;" class="expand">
+                <div class="row" *ngIf="lstData.length>0">
+                    <div class="col-md-3">
+                        <label>House Name/Number </label>
+                        <p> {{lstData[0]['vchr_house_name'] }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Street Name </label>
+                        <p> {{lstData[0]['vchr_street_name'] }}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Pin Code </label>
+                        <p> {{lstData[0]['bint_pincode']}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>District </label>
+                        <p> {{lstData[0]['fk_district__vchr_name'] | titlecase}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>State </label>
+                        <p> {{lstData[0]['fk_state__vchr_name'] | titlecase}}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <label>Country</label>
+                        <p> {{lstData[0]['fk_state__fk_country__vchr_name'] | uppercase}}</p>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<!--- Address ends-->
+
+<!-- Professional -->
+<div style="margin-top: 10px;" *ngIf="lstData.length>0">
+    <mat-accordion >
+        <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header style="margin-top: 10px;">
+                <mat-panel-title>
+                    <h4  style="padding-left: 0;background:none;color: #f8763b;font-size: 15px;margin:0px;font-weight: 600;"><i class="icon-briefcase"></i>&nbsp;Professional Details</h4>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div style="background: #fff9f3;padding:10px;" class="expand">
+                <div class="row" *ngIf="lstData.length>0">
+                    <div class="col-md-3 mb-2">
+                        <label>Base Unit</label>
+                        <p>{{lstData[0]['fk_unit__vchr_name']}}</p>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label >Other Unit</label>
+                        <p>{{str_other_unit}}</p>
+                    </div>
+                    <div class="col-md-6 col-lg-6 mb-2">
+                        <label>Designation </label>
+                        <p> {{strDesignation}}</p>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label>Rank </label>
+                        <p> {{lstData[0]['fk_rank__vchr_name'] }}</p>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label>General Number </label>
+                        <p> {{lstData[0]['vchr_general_no']}}</p>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label>Permenent Employee Number </label>
+                        <p > {{lstData[0]['vchr_pen_no'] }}</p>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label>Date Of Join </label>
+                        <p> {{lstData[0]['dat_joining'] | date:'dd-MM-yyyy'}}</p>
+                    </div>
+                    <div class="col-md-3 mb-2">
+                        <label>Retirement Date </label>
+                        <p> {{lstData[0]['dat_retirement'] | date:'dd-MM-yyyy'}}</p>
+                    </div>
+                    <div class="col-md-3 mt-1 mb-2">
+                        <div class="mb-2">Is Unit Head</div>
+                        <mat-radio-group required aria-label="Select an option" [(ngModel)]="intUnitHead">
+                            <mat-radio-button type="radio"  value="1" [disabled]="true">Yes</mat-radio-button>
+                            <mat-radio-button type="radio" value="0" [disabled]="true">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+<!--- Professional ends-->
+
+
+
+<ngx-spinner
+  bdColor="#080808f5"
+  size="medium"
+  type="ball-scale-ripple-multiple">
+  <img src="assets/images/Logo_spinner.png" alt="Your Image" style="width: 30% !important;" class="rotate" /> <p style="margin-bottom: 25%;color:white
+  ;"><b>Loading... </b></p> 
+</ngx-spinner>

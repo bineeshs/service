@@ -1,0 +1,191 @@
+
+.bg-primary {
+    background-color: #134e3e !important;
+}
+fieldset {
+    border: 1px solid #c9d0d6 !important;
+    margin: 0;
+    position: relative;
+    border-radius: 4px;
+    padding: 9px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    height: 209px;
+}	
+legend{
+        font-size: 14px;
+        margin-bottom: 0px;
+        width: 70%;
+        border-radius: 4px;
+        padding: 3px 3px 3px 9px;
+        color: #4680b4 !important;
+        background-color: white !important;
+}
+.fieldset1 {
+border: 1px solid #f6b035 !important;
+position: relative;
+border-radius: 4px;
+padding:15px;
+box-shadow: none !important;
+height: auto !important;
+width: 96%;
+margin: auto;
+
+}	
+.legend1{
+font-size: 14px;
+margin-bottom: 0px;
+border-radius: 4px;
+padding: 3px 3px 3px 9px;
+color: white !important;
+width: 153px;
+background: linear-gradient(60deg,#20d0b3,#20d0b3) !important;
+box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(0,188,212,.4) !important;
+}
+.customselect{
+    background: none;
+    width: 100%;
+    border: 1px solid #d8d8d8;
+    padding: 5px;
+}
+.input1{
+    border: 1px solid #d8d8d8;
+    padding: 5px;
+}
+.notify-row{
+    padding: 3px 0px 3px 0px;
+    cursor: pointer;
+}
+.notify-row:hover{
+    color: #4680b4;
+}
+.notify-not-read{
+    color: black;
+}
+.dropdown-menu{
+    max-height: 500px;
+    min-width: 335px;
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    position: absolute;
+    transform: translate(-282px, 64px); 
+}
+    
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+::ng-deep .timepicker-overlay{
+    z-index: 14000 !important;
+}
+
+// ::ng-deep .modal-content{
+//     max-width: 350px;
+//     display: block;
+//     margin: auto;
+
+// }
+
+::ng-deep .ReminderModel .modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 20px solid rgba(92, 108, 120, 0.51) !important;
+    border-radius: 40px;
+    outline: 0;
+    max-width: 350px;
+    display: block;
+    margin: auto;
+}
+    
+.reminderset:active { 
+    // background-color: white !important;border: none !important;
+    /* Scaling button to 0.98 to its original size */ 
+    text-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24) !important; 
+    font-size: 278% !important;
+    /* Lowering the shadow */ 
+  } 
+
+  .buttonDiv:hover {
+    box-shadow: 5px 5px 20px #c4c4c4;
+    transform:translate(-5px, -5px);
+  }
+    
+  ::ng-deep .AlarmModelClass .modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border:20px solid rgba(69, 94, 134, 0.34) !important;
+    border-radius: 40px;
+    outline: 0;
+    max-width: 100%;
+}
+
+::ng-deep .WarningModel .modal-content{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #d23a0859;
+    background-clip: padding-box;
+    border:20px solid rgba(69, 94, 134, 0.34) !important;
+    border-radius: 40px;
+    outline: 0;
+    max-width: 100%;
+}
+    
+
+.search-click {
+  width: 0px;
+  transition: all 1s;
+  background-color: #ffffff;  
+  color: #000000;
+  position: relative;
+  overflow: hidden;
+  height: 30px;
+  border: white;
+//   visibility: hidden;
+}
+.search-click:focus{
+  outline: none;
+  background-size: 22px;
+  background-position: 13px;
+  border-radius: 5px;
+  width: 300px;
+  padding-left: 15px;
+  border: 1px solid #080808;
+  color: #010101;
+  background:white;
+  background-color: #ffffff;  
+  height: 30px;
+}
+
+.blink-animation {
+    animation: blink 2s infinite;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .mat-badge-content {
+    width:150%;
+    top: -15px;
+    left: 2px;
+}
+

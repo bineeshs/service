@@ -1,0 +1,18 @@
+
+
+h4 {
+    color: #2a496b !important;
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+
+.form-head {
+    margin-top: 1px;
+    font-size: 16px;
+    text-shadow: 0px 0px;
+    margin-bottom: 7px;
+    color: #fa6163;
+    padding: 10px 15px 10px 15px;
+    background-color: rgb(233, 235, 239);
+    border-radius: 4px;
+}

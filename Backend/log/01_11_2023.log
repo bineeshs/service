@@ -1,0 +1,94 @@
+2023-11-01 11:28:46,695 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 183 - views - post - ERROR - Related Field got invalid lookup: vchr_code - user_id:2 - line no: 139
+2023-11-01 11:29:03,921 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 183 - views - post - ERROR - Related Field got invalid lookup: vchr_code - user_id:2 - line no: 139
+2023-11-01 11:43:28,582 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 142 - views - post - ERROR - Cannot resolve keyword '2023-11-01' into field. Choices are: dat_created, dbl_paid_amt, fk_created, fk_created_id, fk_master, fk_master_id, fk_status, fk_status_id, int_status, pk_bint_id, vchr_remark - user_id:2 - line no: 142
+2023-11-01 12:06:08,219 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 135 - views - post - ERROR - Cannot resolve keyword '2023-10-10' into field. Choices are: dat_created, dbl_paid_amt, fk_created, fk_created_id, fk_master, fk_master_id, fk_status, fk_status_id, int_status, pk_bint_id, vchr_remark - user_id:2 - line no: 135
+2023-11-01 12:26:49,057 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 136 - views - post - ERROR - Cannot resolve keyword 'fk_ser_type' into field. Choices are: dat_created, dbl_paid_amt, fk_created, fk_created_id, fk_master, fk_master_id, fk_status, fk_status_id, int_status, pk_bint_id, service_age, vchr_remark - user_id:2 - line no: 136
+2023-11-01 16:03:35,638 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 270 - views - post - ERROR -  - user_id:2 - line no: 251
+2023-11-01 16:07:35,991 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 269 - views - post - ERROR - (psycopg2.errors.SyntaxError) syntax error at or near "sf"
+LINE 3:                         sf.pk_bint_id,
+                                ^
+
+[SQL: 
+                            
+                        sf.pk_bint_id,
+                        sf.fk_master_id,
+                        sf.dat_created,
+                        sf.vchr_remark,
+                        sf.fk_status_id,
+                        sm.dat_created AS fk_master_dat_created,
+                        sm.vchr_customer_name,
+                        sm.bint_cust_phone,
+                        l.vchr_name AS fk_master_location_name,
+                        sm.dbl_outstanding,
+                        sm.dbl_total_amt,
+                        sm.dbl_amount,
+                        sm.dbl_service_charge,
+                        sm.vchr_reference_num,                         
+                        CASE 
+                            WHEN sf.int_status = 1 AND sf.fk_status_id = 'LOST' THEN sf.dat_action - sm.dat_service
+                            WHEN sf.int_status = 1 AND sf.fk_status_id = 'COMPLETED & PAID' THEN sf.dat_action - sm.dat_service
+                            ELSE current_date - sm.dat_service
+                        END AS service_age
+                    FROM 
+                        service_master sm
+                        JOIN service_followup sf ON sf.fk_master_id = sm.pk_bint_id
+                        JOIN status_chart sc ON sc.pk_bint_id = sm.fk_status_id
+                        JOIN service_type st ON st.pk_bint_id = sm.fk_ser_type_id
+                        JOIN location l ON sm.fk_location_id = l.id
+                    WHERE 
+                         sm.dat_created::date BETWEEN '2023-10-05' and '2023-11-01' 
+                        
+                    ]
+(Background on this error at: https://sqlalche.me/e/14/f405) - user_id:2 - line no: 251
+2023-11-01 16:14:18,071 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 270 - views - post - ERROR - 'Connection' object has no attribute 'cursor' - user_id:2 - line no: 161
+2023-11-01 16:14:23,266 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 270 - views - post - ERROR - 'Connection' object has no attribute 'cursor' - user_id:2 - line no: 161
+2023-11-01 16:17:53,304 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 264 - views - post - ERROR - local variable 'lst_service' referenced before assignment - user_id:2 - line no: 264
+2023-11-01 16:26:55,535 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 166 - views - post - ERROR - function date_part(unknown, integer) does not exist
+LINE 18: ..._status = 1 AND sc.vchr_status_code = 'LOST' THEN DATE_PART(...
+                                                              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+ - user_id:2 - line no: 166
+2023-11-01 16:27:46,815 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 166 - views - post - ERROR - function pg_catalog.date_part(unknown, integer) does not exist
+LINE 18: ..._status = 1 AND sc.vchr_status_code = 'LOST' THEN EXTRACT(DA...
+                                                              ^
+HINT:  No function matches the given name and argument types. You might need to add explicit type casts.
+ - user_id:2 - line no: 166
+2023-11-01 16:32:22,880 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 267 - views - post - ERROR - syntax error at or near "CASE"
+LINE 19:                         CASE 
+                                 ^
+ - user_id:2 - line no: 254
+2023-11-01 16:33:03,717 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 267 - views - post - ERROR - syntax error at or near "CASE"
+LINE 19:                         CASE 
+                                 ^
+ - user_id:2 - line no: 254
+2023-11-01 16:35:20,862 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 166 - views - post - ERROR - local variable 'lst_data' referenced before assignment - user_id:2 - line no: 166
+2023-11-01 16:36:11,654 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 166 - views - post - ERROR - local variable 'lst_data' referenced before assignment - user_id:2 - line no: 166
+2023-11-01 16:36:46,297 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 267 - views - post - ERROR - local variable 'lst_data' referenced before assignment - user_id:2 - line no: 262
+2023-11-01 16:45:07,699 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 166 - views - post - ERROR - can only concatenate str (not "int") to str - user_id:2 - line no: 166
+2023-11-01 16:57:20,631 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 166 - views - post - ERROR - syntax error at or near "WHERE"
+LINE 33:                 WHERE 
+                         ^
+ - user_id:2 - line no: 166
+2023-11-01 17:14:34,036 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 231 - views - post - ERROR -  - user_id:2 - line no: 219
+2023-11-01 17:29:57,253 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 217 - views - post - ERROR - local variable 'total_dbl_paid_amt' referenced before assignment - user_id:2 - line no: 217
+2023-11-01 17:45:14,236 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 251 - views - post - ERROR - local variable 'lst_single_data' referenced before assignment - user_id:2 - line no: 246
+2023-11-01 17:45:42,300 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 248 - views - post - ERROR - local variable 'lst_single_data' referenced before assignment - user_id:2 - line no: 243
+2023-11-01 17:45:45,224 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 248 - views - post - ERROR - local variable 'lst_single_data' referenced before assignment - user_id:2 - line no: 243
+2023-11-01 17:47:25,164 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 171 - views - post - ERROR - local variable 'lst_single_data' referenced before assignment - user_id:2 - line no: 171
+2023-11-01 17:55:59,833 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 284 - views - put - ERROR -  - user_id:2 - line no: 260
+2023-11-01 18:07:42,732 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 246 - views - post - ERROR - unsupported operand type(s) for +=: 'float' and 'NoneType' - user_id:2 - line no: 234
+2023-11-01 18:07:50,961 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 246 - views - post - ERROR - unsupported operand type(s) for +=: 'float' and 'NoneType' - user_id:2 - line no: 234
+2023-11-01 18:07:59,017 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 246 - views - post - ERROR - unsupported operand type(s) for +=: 'float' and 'NoneType' - user_id:2 - line no: 234
+2023-11-01 18:13:44,087 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 244 - views - post - ERROR - unsupported operand type(s) for +=: 'float' and 'NoneType' - user_id:2 - line no: 234
+2023-11-01 19:27:37,949 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 263 - views - post - ERROR - 'NoneType' object has no attribute 'strftime' - user_id:2 - line no: 176
+2023-11-01 19:27:42,815 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 263 - views - post - ERROR - 'NoneType' object has no attribute 'strftime' - user_id:2 - line no: 176
+2023-11-01 19:30:12,379 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 263 - views - post - ERROR - 'str' object has no attribute 'strftime' - user_id:2 - line no: 176
+2023-11-01 19:55:44,297 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 274 - views - post - ERROR - syntax error at or near "["
+LINE 31: ...3-09-30' and '2023-11-01'   AND st.pk_bint_id IN ([4, 2]) AN...
+                                                              ^
+ - user_id:2 - line no: 234
+2023-11-01 20:52:29,350 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - strptime() argument 1 must be str, not None - user_id:2 - line no: 179
+2023-11-01 20:53:54,111 - /home/newuser/bineesh/TASK/service/Backend/service_app/views.py - 275 - views - post - ERROR - syntax error at or near "AND"
+LINE 31:                     sf.int_status = 1 AND   AND sm.pk_bint_i...
+                                                     ^
+ - user_id:2 - line no: 235
